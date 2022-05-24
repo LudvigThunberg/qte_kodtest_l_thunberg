@@ -2,8 +2,10 @@
 require("dotenv").config();
 require("./database.js");
 
+
 //REQUIREMENTS
 const express = require("express");
+const cors = require("cors");
 
 // APP INIT
 const app = express();
@@ -15,6 +17,7 @@ const commentsRouter = require("./routers/commentsRouter.js");
 //MIDDLEWARES
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 //ROUTERS
 app.use("/posts", postsRouter);
