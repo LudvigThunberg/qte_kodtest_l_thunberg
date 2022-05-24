@@ -1,0 +1,26 @@
+//CONFIG
+require("dotenv").config();
+require("./database.js");
+
+//REQUIREMENTS
+const express = require("express");
+
+// APP INIT
+const app = express();
+
+// ROUTER REQUIREMENTS
+const postsRouter = require("./routers/postsRouter.js");
+const commentsRouter = require("./routers/commentsRouter.js");
+
+//MIDDLEWARES
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//ROUTERS
+app.use("/posts", postsRouter);
+app.use("/comments", commentsRouter);
+
+// LISTENING PORT
+app.listen(8000, ()=> {
+    console.log("http://localhost:8000/");
+});
