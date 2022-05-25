@@ -12,12 +12,14 @@ postsRouter.get("/", async (rerq,res)=>{
 //CREATE NEW POST
 postsRouter.post("/create", async (req,res) => {
     const newPost = new PostsModel({
+        id: req.body.id,
         post: req.body.post,
         name: req.body.name,
     })
 
     await newPost.save();
-    res.sendStatus(201)
+    const posts = await PostsModel.find();
+    res.json(posts)
 })
 
 module.exports = postsRouter;
