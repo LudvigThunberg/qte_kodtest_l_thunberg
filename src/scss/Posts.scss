@@ -1,0 +1,9 @@
+.all-container{
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    h1{
+        text-align: center;
+    }
+}

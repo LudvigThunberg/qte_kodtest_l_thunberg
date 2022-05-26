@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react"
-
+import "../scss/CreatePost.scss"
 interface ICreatePostProps{
     createNewPost(post: string, name: string): void
 }
@@ -33,11 +33,13 @@ export const CreatePost = (props: ICreatePostProps) => {
 
     return(
         <>
-            <form onSubmit={addPost}>
+            <form className="form" onSubmit={addPost}>
+                <div className="input-textarea">
                 <textarea name="post" onChange={handleTextareaChange} value={textarea} placeholder="Write your post..."></textarea>
                 <input type="text" name="name" onChange={handleInputChange} value={input} placeholder="Name"/>
+                </div>
                 <button type="submit">Save</button>
-                {isActive? <p className="validate-new-post">Write in both fields</p>: <></>}
+                {isActive? <p className="validate-new-post">Please write in both fields...</p>: <></>}
             </form>
         </>
     )

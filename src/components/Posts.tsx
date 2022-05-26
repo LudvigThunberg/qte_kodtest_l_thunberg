@@ -5,7 +5,7 @@ import getPosts from "../services/getAllPostsService"
 import sendPostToDB from "../services/savePostToDB"
 import { CreatePost } from "./CreatePost"
 import { SinglePost } from "./SinglePost"
-
+import "../scss/Posts.scss"
 export const Posts = () => {
     const [allPosts, setAllPosts] = useState<IPost[]>([])
     const [singlePost, setSinglePost] = useState<Post>({post: "", name: ""})
@@ -16,8 +16,6 @@ export const Posts = () => {
                 await sendPostToDB(singlePost)
                 .then((response)=>{
                     setAllPosts(response)
-                    console.log("response", response);
-                    
                 })    
             }
         }    
@@ -35,11 +33,8 @@ export const Posts = () => {
         setSinglePost(new Post(name, post)) 
 
     }
-
-    console.log(allPosts);
     
     let reversedAllPost = allPosts.map(post => post).reverse();
-
     let singlePostToComponent = 
         reversedAllPost.map((p) =>{
             return(
@@ -49,8 +44,12 @@ export const Posts = () => {
     
     return(
         <>
+
+        <div className="all-container">
+        <h1>Posts and comments</h1>
             <CreatePost createNewPost={createNewPost} ></CreatePost>
             {singlePostToComponent}
+        </div>
         </>
     )
 }

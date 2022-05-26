@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-
+import "../scss/CreateComment.scss"
 interface ICreateCommentProps {
     addComment(message: string, name: string): void,
 }

@@ -1,0 +1,49 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .input-textarea{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        textarea{
+        font-size: 16px;
+        font-size: Max(16px, 1em);
+        font-family: inherit;
+        padding: 0.25em 0.5em;
+        background-color: #fff;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 3px 3px 2px 1px #888888;
+        border: 1px solid gray;
+        }
+        input{
+        font-size: 16px;
+        font-size: Max(16px, 1em);
+        font-family: inherit;
+        padding: 0.25em 0.5em;
+        background-color: #fff;
+        border: none;    
+        border-radius: 4px;
+        box-shadow: 3px 3px 2px 1px #888888;
+        border: 1px solid gray;
+        }
+        
+    }
+    button{
+        width: 90px;
+        background: white;
+        border: 1px solid gray;
+        box-shadow: 3px 3px 2px 1px #888888;
+        border-radius: 4px;
+        transition: 180ms box-shadow ease-in-out;
+        padding: 4px;
+        &:hover{
+            box-shadow: 4px 4px 2px 1px #888888;
+        }
+    }
+    .validate-new-post{
+        font-size: 0.6em;
+        color: red;
+    }
+}
