@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Post } from "../models/Post";
 import { IPost } from "../models/IPost";
 
 async function getPosts(): Promise<IPost[]> {

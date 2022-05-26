@@ -10,7 +10,7 @@ export const Posts = () => {
     const [allPosts, setAllPosts] = useState<IPost[]>([])
     const [singlePost, setSinglePost] = useState<Post>({post: "", name: ""})
 
-    useEffect(()=>{
+    useEffect(() => {
         async function asyncfunc() {
             if(singlePost.name.length !== 0){
                 await sendPostToDB(singlePost)
