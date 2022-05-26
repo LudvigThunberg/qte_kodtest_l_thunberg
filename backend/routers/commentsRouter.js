@@ -30,6 +30,4 @@ commentsRouter.post("/create", async (req, res) => {
     res.json(comments)
 })
 
-
-
 module.exports = commentsRouter;
