@@ -6,8 +6,8 @@ leta upp ditt mongoDBs connection string och lägg den i .env.example filen och 
 
 ## Starta Projektet
 
-I backenmappens terminal skriv: nodemon
-I rotmappens terminal skriv: npm start
+I backenmappens terminal kör: nodemon
+I rotmappens terminal kör: npm start
 
 Nu ska det bara vara att tuta och köra.
 //Ludvig Thunberg
