@@ -5,14 +5,12 @@ interface ICreateCommentProps {
 }
 
 export const CreateComment = (props: ICreateCommentProps) =>{
-    /* const [comment, setComment] = useState<Comment>({
-        message: "",
-        name: "",
-        postId: props._id,
-    }) */
+    //COMPONENT STATES
     const[name, setName] = useState("")
     const[message, setMessage] = useState("")
+    const [isActive, setIsActive] = useState(false)
 
+    //HANDLE STATE/INPUT
     const nameInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     }
@@ -21,12 +19,18 @@ export const CreateComment = (props: ICreateCommentProps) =>{
         setMessage(e.target.value)
     }
 
+    //HANDLE FORM SUBMIT
     const handleSave = (e: FormEvent)=>{
         e.preventDefault();
         if(name.length !== 0 && message.length !== 0){
             props.addComment(message, name)
             setName("");
             setMessage("");
+            if(isActive === true){
+                setIsActive(false)
+            }
+        }else{
+            setIsActive(true)
         }
     }
     return(
@@ -35,6 +39,7 @@ export const CreateComment = (props: ICreateCommentProps) =>{
                 <input type="text" value={message} name="message" onChange={messageInputChange} placeholder="comment..."/>
                 <input type="text" value={name} name="name" onChange={nameInputChange} placeholder="name" />
                 <button type="submit">Save</button>
+                {isActive? <p className="validate-new-post">Please write in both fields...</p>: <></>}
             </form>
         </>
     )

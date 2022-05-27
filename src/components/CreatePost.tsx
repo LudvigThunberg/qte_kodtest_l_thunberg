@@ -5,10 +5,12 @@ interface ICreatePostProps{
 }
 
 export const CreatePost = (props: ICreatePostProps) => {
+    //COMPONENT STATES
     const [input, setInput] = useState("")
     const [textarea, setTextarea] = useState("")
     const [isActive, setIsActive] = useState(false)
 
+    //HANDLE STATE/INPUT
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value)
     }
@@ -17,6 +19,7 @@ export const CreatePost = (props: ICreatePostProps) => {
         setTextarea(e.target.value)
     }
     
+    //HANDLE FORM SUBMIT
     const addPost = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(textarea.length !== 0 && input.length !== 0){

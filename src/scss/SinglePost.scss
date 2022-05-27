@@ -6,10 +6,10 @@
         font-size: Max(16px, 1em);
         font-family: inherit;
         padding: 0.8em;
-        background-color: #fff;
+        background-color: #2C394B;
         border: none;
         border-radius: 4px;
-        box-shadow: 3px 3px 2px 1px #888888;
+        box-shadow: 3px 3px 2px 1px #334756;
         border: 1px solid gray;
         display: flex;
         flex-direction: column;
@@ -18,21 +18,26 @@
             margin: 0;
             font-size: 0.8em;
             text-decoration: underline;
+            color: lightgray;
         }
         .post{
             word-break: break-all;
             margin: 0;
+            color: lightgray;
         }
         button{
             width: 90px;
-            background: white;
-            border: 1px solid gray;
-            box-shadow: 3px 3px 2px 1px #888888;
-            border-radius: 4px;
-            transition: 180ms box-shadow ease-in-out;
-            padding: 4px;
+        background: #2C394B;
+        border: 1px solid gray;
+        box-shadow: 3px 3px 2px 1px #334756;
+        border-radius: 4px;
+        transition: 180ms box-shadow ease-in-out;
+        padding: 4px;
+        color: #FF4C29;
+        cursor: pointer;
             &:hover{
-                box-shadow: 4px 4px 2px 1px #888888;
+                box-shadow: 4px 4px 2px 1px #334756;
+                background-color: #082032;
             }
         }
     }

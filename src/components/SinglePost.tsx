@@ -46,10 +46,6 @@ export const SinglePost = (props: ISinglePostProps) => {
     const addComment = (message: string, name: string) => {
         setComment(new Comment(message, name, props.post._id))
     }
-    
-    const toggleIsActive = () => {
-        setIsActive(!isActive)
-    }
 
     // LOOP SINGLE COMMENT COMPONENT
     let singleComment = allComments.map((comment)=>{
