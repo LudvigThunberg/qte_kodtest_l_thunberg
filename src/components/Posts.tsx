@@ -6,6 +6,7 @@ import sendPostToDB from "../services/savePostToDB"
 import { CreatePost } from "./CreatePost"
 import { SinglePost } from "./SinglePost"
 import "../scss/Posts.scss"
+
 export const Posts = () => {
     //COMPONENT STATES
     const [allPosts, setAllPosts] = useState<IPost[]>([])
@@ -34,7 +35,7 @@ export const Posts = () => {
 
     //SET SINGLE POST STATE
     const createNewPost = (name: string, post: string) => {
-        setSinglePost(new Post(name, post)) 
+        setSinglePost(new Post(name, post))
     }
     
     //LOOP SINGLE POST COMPONENT HTML
@@ -48,7 +49,6 @@ export const Posts = () => {
     
     return(
         <>
-
         <div className="all-container">
         <h1>Posts and comments</h1>
             <CreatePost createNewPost={createNewPost} ></CreatePost>

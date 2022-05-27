@@ -48,32 +48,33 @@ export const SinglePost = (props: ISinglePostProps) => {
     }
 
     // LOOP SINGLE COMMENT COMPONENT
-    let singleComment = allComments.map((comment)=>{
+    let comments = allComments.map((comment)=>{
         return(
             <SingleComment key={comment._id} comment={comment}></SingleComment> 
         )
     })
 
     // CONDITIONAL RENDERD HTML
-    let commentButton = <button onClick={getComments}>Comments</button>
+    /* let commentButton = <button onClick={getComments}>Comments</button>
     if(isActive){
         commentButton = <div></div>
-    }
-
-    let createComment = <></>
+    } */
+    /* let createComment = <></>
     if(isActive){
        createComment = <CreateComment addComment={addComment}></CreateComment>
-    }
-
+    } */
+    
+    let commentButton = <button onClick={getComments}>Comments</button>
+    let createComment = <CreateComment addComment={addComment}></CreateComment>
 
     return(
         <div className="container">
             <div className="comment-container">
                 <p className="name">{props.post.name}</p>
                 <p className="post">{props.post.post}</p>
-                {commentButton}
-                {createComment}
-                {singleComment}
+                {!isActive && commentButton}
+                {isActive && createComment}
+                {comments}
             </div>
         </div>
     )

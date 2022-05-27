@@ -1,5 +1,6 @@
 import { IComment } from "../models/IComment"
 import "../scss/SingleComment.scss"
+
 interface ISingleCommentProps{
     comment: IComment,
 }

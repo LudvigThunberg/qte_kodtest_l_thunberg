@@ -5,29 +5,41 @@ const CommentsModel = require("../models/CommentsModel.js");
 
 //GET ALL COMMENTS
 commentsRouter.get("/", async (req,res)=>{
-    const comments = await CommentsModel.find();
-    res.send(comments)
+    try{
+        const comments = await CommentsModel.find();
+        res.send(comments)
+    }catch(error){
+        res.sendStatus(404)
+    }
 })
 
 //GET COMMENT BY POSTID
 commentsRouter.get("/:postId", async (req, res)=> {
-    const postId = req.params.postId
-    let comments = await CommentsModel.find({postId : postId})
-    console.log(comments);
-    res.send(comments)
+    try{
+        const postId = req.params.postId
+        let comments = await CommentsModel.find({postId : postId})
+        res.send(comments)
+    }catch(error){
+        res.sendStatus(404)
+    }
 })
 
 //CREATE NEW COMMENT
 commentsRouter.post("/create", async (req, res) => {
-    const newComment = new CommentsModel({
-        message: req.body.message,
-        name: req.body.name,
-        postId: req.body.postId,
-    })
+    try {
+        const newComment = new CommentsModel({
+            message: req.body.message,
+            name: req.body.name,
+            postId: req.body.postId,
+        })
+        
+        await newComment.save()
+        let comments = await CommentsModel.find({postId : req.body.postId})
+        res.send(comments)
+    } catch (error) {
+       res.sendStatus(500) 
+    }
 
-    await newComment.save()
-    let comments = await CommentsModel.find({postId : req.body.postId})
-    res.json(comments)
 })
 
 module.exports = commentsRouter;

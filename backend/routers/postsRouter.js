@@ -5,21 +5,33 @@ const PostsModel = require("../models/PostsModel.js");
 
 //GET ALL POSTS
 postsRouter.get("/", async (rerq,res)=>{
-    const posts = await PostsModel.find();
-    res.send(posts)
+    try{
+        const posts = await PostsModel.find();
+        res.send(posts)
+
+    }catch(error){
+        res.sendStatus(404)
+    }
 })
 
 //CREATE NEW POST
 postsRouter.post("/create", async (req,res) => {
-    const newPost = new PostsModel({
-        id: req.body.id,
-        post: req.body.post,
-        name: req.body.name,
-    })
+    
+    try{
+        const newPost = new PostsModel({
+            /* id: req.body.id, */
+            post: req.body.post,
+            name: req.body.name,
+        })
+    
+        /* const post =  */await newPost.save();
+        /* console.log(post); */
+        const posts = await PostsModel.find();
+        res.send(posts)
 
-    await newPost.save();
-    const posts = await PostsModel.find();
-    res.json(posts)
+    }catch(error){
+        res.sendStatus(500)
+    }
 })
 
 module.exports = postsRouter;
