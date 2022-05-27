@@ -17,14 +17,14 @@ export const Posts = () => {
         async function asyncfunc() {
             if(singlePost.name.length !== 0){
                 await sendPostToDB(singlePost)
-                .then((response)=>{
-                    setAllPosts(response)
+                .then((post)=>{
+                    setAllPosts(allPosts => [...allPosts, post])
                 })    
             }
         }    
         asyncfunc();
     }, [singlePost])
-
+    
     //GET ALL POSTS FROM DB
     useEffect(()=>{
             getPosts()

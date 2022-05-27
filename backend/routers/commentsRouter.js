@@ -33,9 +33,9 @@ commentsRouter.post("/create", async (req, res) => {
             postId: req.body.postId,
         })
         
-        await newComment.save()
-        let comments = await CommentsModel.find({postId : req.body.postId})
-        res.send(comments)
+        let comment = await newComment.save()
+/*         let comments = await CommentsModel.find({postId : req.body.postId}) */
+        res.send(comment)
     } catch (error) {
        res.sendStatus(500) 
     }

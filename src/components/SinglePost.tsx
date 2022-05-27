@@ -21,19 +21,20 @@ export const SinglePost = (props: ISinglePostProps) => {
         postId: "",
     })
     
-    //SEND NEW COMMENT TO DB AND RETURN ALL COMMENTS
+    //SEND NEW COMMENT TO DB, RETURN COMMENT AND ADD TO ALLCOMMENTS
     useEffect(() => {
         async function asyncfunc(){
             if(comment.message.length !== 0){
                 await sendCommentToDB(comment)
-                .then((response)=>{
-                    setAllComments(response)
+                .then((comment)=>{
+                    setAllComments(allComments => [...allComments, comment])
                 })
             }
         }
         asyncfunc();
     },[comment])
-
+    console.log("Log after save comment: ", allComments);
+    
     //GET ALL COMMENTS FROM DB
     const getComments = () => {
         getCommentsByPostId(props.post._id)
@@ -53,16 +54,6 @@ export const SinglePost = (props: ISinglePostProps) => {
             <SingleComment key={comment._id} comment={comment}></SingleComment> 
         )
     })
-
-    // CONDITIONAL RENDERD HTML
-    /* let commentButton = <button onClick={getComments}>Comments</button>
-    if(isActive){
-        commentButton = <div></div>
-    } */
-    /* let createComment = <></>
-    if(isActive){
-       createComment = <CreateComment addComment={addComment}></CreateComment>
-    } */
     
     let commentButton = <button onClick={getComments}>Comments</button>
     let createComment = <CreateComment addComment={addComment}></CreateComment>

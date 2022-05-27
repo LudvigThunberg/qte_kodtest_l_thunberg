@@ -19,15 +19,14 @@ postsRouter.post("/create", async (req,res) => {
     
     try{
         const newPost = new PostsModel({
-            /* id: req.body.id, */
             post: req.body.post,
             name: req.body.name,
         })
     
-        /* const post =  */await newPost.save();
+        const post = await newPost.save();
         /* console.log(post); */
-        const posts = await PostsModel.find();
-        res.send(posts)
+        /* const posts = await PostsModel.find(); */
+        res.send(post)
 
     }catch(error){
         res.sendStatus(500)
