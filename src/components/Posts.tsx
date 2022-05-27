@@ -7,9 +7,11 @@ import { CreatePost } from "./CreatePost"
 import { SinglePost } from "./SinglePost"
 import "../scss/Posts.scss"
 export const Posts = () => {
+    //COMPONENT STATES
     const [allPosts, setAllPosts] = useState<IPost[]>([])
     const [singlePost, setSinglePost] = useState<Post>({post: "", name: ""})
 
+    //SEND NEW POST TO DB AND RETURN ALL POSTS
     useEffect(() => {
         async function asyncfunc() {
             if(singlePost.name.length !== 0){
@@ -22,6 +24,7 @@ export const Posts = () => {
         asyncfunc();
     }, [singlePost])
 
+    //GET ALL POSTS FROM DB
     useEffect(()=>{
             getPosts()
             .then((response)=>{
@@ -29,11 +32,12 @@ export const Posts = () => {
             })
     }, [])
 
+    //SET SINGLE POST STATE
     const createNewPost = (name: string, post: string) => {
         setSinglePost(new Post(name, post)) 
-
     }
     
+    //LOOP SINGLE POST COMPONENT HTML
     let reversedAllPost = allPosts.map(post => post).reverse();
     let singlePostToComponent = 
         reversedAllPost.map((p) =>{
