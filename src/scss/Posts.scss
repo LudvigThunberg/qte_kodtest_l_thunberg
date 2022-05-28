@@ -1,8 +1,10 @@
 .all-container{
-    max-width: 600px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+/*     overflow-y: auto;
+    padding: 30px; */
     h1{
         text-align: center;
         color: #FF4C29;
