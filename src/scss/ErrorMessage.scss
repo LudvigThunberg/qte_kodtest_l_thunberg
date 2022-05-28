@@ -1,0 +1,36 @@
+.errorMessage{
+    background-color: #FF4C29;
+    border-radius: 4px;
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    gap: 20px;
+    z-index: 1;
+    position: absolute;
+    top: 50%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    border: 1px solid gray;
+    .snackbarTextbox{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        h3{
+            margin: 0;
+        }
+        p{
+            margin: 0;
+        }
+    }
+    .errorButton{
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        background-color: #FF4C29;
+        color: white;
+    }
+}

@@ -6,15 +6,18 @@ import { useEffect, useState } from "react"
 import { IComment } from "../models/IComment"
 import getCommentsByPostId from "../services/getCommentsByPostId"
 import { SingleComment } from "./SingleComment"
+import {ErrorMessage} from "./ErrorMessage"
 import "../scss/SinglePost.scss"
 interface ISinglePostProps{
     post: IPost,
+
 }
 
 export const SinglePost = (props: ISinglePostProps) => {
     //ALL COPMONENT STATES
     const [allComments, setAllComments] = useState<IComment[]>([])
     const [isActive, setIsActive] = useState(false);
+    const [error, setError] = useState(false);
     const [comment, setComment] = useState<Comment>({
         message: "",
         name: "",
@@ -23,29 +26,39 @@ export const SinglePost = (props: ISinglePostProps) => {
     
     //SEND NEW COMMENT TO DB, RETURN COMMENT AND ADD TO ALLCOMMENTS
     useEffect(() => {
-        async function asyncfunc(){
+        function sendComment(){
             if(comment.message.length !== 0){
-                await sendCommentToDB(comment)
+                sendCommentToDB(comment)
                 .then((comment)=>{
                     setAllComments(allComments => [...allComments, comment])
+                }).catch(error => {
+                    console.log("Error!: ", error);
+                    setError(true)
                 })
             }
         }
-        asyncfunc();
+        sendComment();
     },[comment])
-    console.log("Log after save comment: ", allComments);
     
-    //GET ALL COMMENTS FROM DB
+    //GET ALL COMMENTS by postId FROM DB
     const getComments = () => {
         getCommentsByPostId(props.post._id)
         .then((response)=>{
             setAllComments(response)
             setIsActive(!isActive)
+        }).catch((error) =>{
+            console.log("Error!: ", error);
+            setError(true)
         })
     }
+
     // SET LOCAL STATES
     const addComment = (message: string, name: string) => {
         setComment(new Comment(message, name, props.post._id))
+    }
+
+    const resetErrorMessage = () =>{
+        setError(false)
     }
 
     // LOOP SINGLE COMMENT COMPONENT
@@ -66,6 +79,7 @@ export const SinglePost = (props: ISinglePostProps) => {
                 {!isActive && commentButton}
                 {isActive && createComment}
                 {comments}
+                <ErrorMessage resetErrorMessage={resetErrorMessage} error={error} ></ErrorMessage>
             </div>
         </div>
     )

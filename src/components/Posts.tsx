@@ -6,20 +6,26 @@ import sendPostToDB from "../services/savePostToDB"
 import { CreatePost } from "./CreatePost"
 import { SinglePost } from "./SinglePost"
 import "../scss/Posts.scss"
+import { ErrorMessage } from "./ErrorMessage"
 
 export const Posts = () => {
     //COMPONENT STATES
     const [allPosts, setAllPosts] = useState<IPost[]>([])
     const [singlePost, setSinglePost] = useState<Post>({post: "", name: ""})
+    const [error, setError] = useState(false);
 
-    //SEND NEW POST TO DB AND RETURN ALL POSTS
+    //SEND NEW POST TO DB, RETURN POST AND ADD TO ALLPOSTS
     useEffect(() => {
-        async function asyncfunc() {
+        function asyncfunc() {
             if(singlePost.name.length !== 0){
-                await sendPostToDB(singlePost)
+                sendPostToDB(singlePost)
                 .then((post)=>{
                     setAllPosts(allPosts => [...allPosts, post])
-                })    
+                })
+                .catch(error=>{
+                    console.log("Error!: ", error);
+                    setError(true)
+                })
             }
         }    
         asyncfunc();
@@ -29,13 +35,22 @@ export const Posts = () => {
     useEffect(()=>{
             getPosts()
             .then((response)=>{
-                setAllPosts(response)              
+                setAllPosts(response);      
+            }).catch(error =>{
+                console.log("Error!: ", error);
+                setError(true)
             })
     }, [])
 
+    
+    
     //SET SINGLE POST STATE
     const createNewPost = (name: string, post: string) => {
         setSinglePost(new Post(name, post))
+    }
+    
+    const resetErrorMessage = () =>{
+        setError(false)
     }
     
     //LOOP SINGLE POST COMPONENT HTML
@@ -54,6 +69,7 @@ export const Posts = () => {
             <CreatePost createNewPost={createNewPost} ></CreatePost>
             {singlePostToComponent}
         </div>
+        <ErrorMessage resetErrorMessage={resetErrorMessage} error={error} ></ErrorMessage>
         </>
     )
 }
