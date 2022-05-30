@@ -16,7 +16,7 @@ export const Posts = () => {
 
     //SEND NEW POST TO DB, RETURN POST AND ADD TO ALLPOSTS
     useEffect(() => {
-        function asyncfunc() {
+        function sendPost() {
             if(singlePost.name.length !== 0){
                 sendPostToDB(singlePost)
                 .then((post)=>{
@@ -27,8 +27,8 @@ export const Posts = () => {
                     setError(true)
                 })
             }
-        }    
-        asyncfunc();
+        }
+        sendPost();
     }, [singlePost])
     
     //GET ALL POSTS FROM DB
@@ -42,8 +42,6 @@ export const Posts = () => {
             })
     }, [])
 
-    
-    
     //SET SINGLE POST STATE
     const createNewPost = (name: string, post: string) => {
         setSinglePost(new Post(name, post))
