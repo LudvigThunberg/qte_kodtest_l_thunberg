@@ -3,18 +3,6 @@ const commentsRouter = express.Router();
 
 const CommentsModel = require("../models/CommentsModel.js");
 
-/* //GET ALL COMMENTS
-commentsRouter.get("/", async (req,res)=>{
-
-    try{
-        throw new Error("eror")
-        const comments = await CommentsModel.find();
-        res.send(comments)
-    }catch(error){
-        res.sendStatus(404)
-    }
-}) */
-
 //GET COMMENT BY POSTID
 commentsRouter.get("/:postId", async (req, res)=> {   
 
