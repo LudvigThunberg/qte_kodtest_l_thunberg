@@ -2,7 +2,7 @@
 require("dotenv").config();
 require("./database.js");
 
-
+//COMMENT
 //REQUIREMENTS
 const express = require("express");
 const cors = require("cors");
